@@ -10,17 +10,31 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Vcl.WindowsStore,
   Vcl.WinXCtrls, Data.DB, FireDAC.Comp.DataSet, System.Sensors,
   System.Sensors.Components, Vcl.ComCtrls, Data.Win.ADODB, Vcl.Grids,
-  Vcl.DBGrids;
+  Vcl.DBGrids, Vcl.StdCtrls;
 
 type
   TForm2 = class(TForm)
     PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
+    Etudiant: TTabSheet;
     ADOConnection1: TADOConnection;
     ADOQuery1: TADOQuery;
     ADODataSet1: TADODataSet;
-    TabSheet2: TTabSheet;
+    List: TTabSheet;
     DBGrid1: TDBGrid;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Save: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit3: TEdit;
+    Label4: TLabel;
+    Edit4: TEdit;
+    Label5: TLabel;
+    Edit5: TEdit;
+    Button5: TButton;
   private
     { Private declarations }
   public

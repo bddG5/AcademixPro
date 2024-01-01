@@ -11,13 +11,13 @@ uses
 type
   TForm1 = class(TForm)
     Image1: TImage;
-    Label1: TLabel;
     Panel1: TPanel;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
     DatePicker1: TDatePicker;
+    Image2: TImage;
     procedure SpeedButton1Click(Sender: TObject);
   private
     From1:TForm2;
