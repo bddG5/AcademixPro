@@ -1,4 +1,4 @@
-unit Unit2;
+unit Etudiant;
 
 interface
 
@@ -20,6 +20,7 @@ type
     ADOQuery1: TADOQuery;
     ADODataSet1: TADODataSet;
     TabSheet2: TTabSheet;
+    DBGrid1: TDBGrid;
   private
     { Private declarations }
   public

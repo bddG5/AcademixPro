@@ -1,11 +1,11 @@
-unit Unit1;
+unit main;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.Buttons,
-  Vcl.ExtCtrls, Vcl.Tabs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Imaging.pngimage,Unit2,
+  Vcl.ExtCtrls, Vcl.Tabs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Imaging.pngimage,Etudiant,
   Vcl.WinXPickers;
 
 type
