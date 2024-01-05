@@ -1,21 +1,25 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'Form5'
-  ClientHeight = 360
-  ClientWidth = 485
+  BorderStyle = bsSizeToolWin
+  Caption = 'Authentication'
+  ClientHeight = 377
+  ClientWidth = 401
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  FormStyle = fsStayOnTop
+  GlassFrame.Enabled = True
+  Position = poMainFormCenter
   Visible = True
   TextHeight = 15
   object Image2: TImage
-    Left = -8
+    Left = -4
     Top = 0
-    Width = 497
+    Width = 437
     Height = 162
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000003420000
@@ -616,32 +620,98 @@ object Form5: TForm5
   end
   object Label1: TLabel
     Left = 48
-    Top = 179
-    Width = 34
-    Height = 15
-    Caption = 'Label1'
+    Top = 175
+    Width = 77
+    Height = 23
+    Caption = 'Utilisateur'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
   end
   object Label2: TLabel
     Left = 48
-    Top = 229
-    Width = 34
-    Height = 15
-    Caption = 'Label1'
+    Top = 237
+    Width = 93
+    Height = 23
+    Caption = 'Mot de pass'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
   end
   object Edit1: TEdit
     Left = 48
-    Top = 200
-    Width = 121
-    Height = 23
+    Top = 203
+    Width = 305
+    Height = 31
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
-    Text = 'Edit1'
+    OnChange = Edit1Change
   end
   object Edit2: TEdit
     Left = 48
-    Top = 248
-    Width = 121
-    Height = 23
+    Top = 266
+    Width = 305
+    Height = 31
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+    PasswordChar = '*'
     TabOrder = 1
-    Text = 'Edit1'
+    Text = '0000'
+    OnChange = Edit2Change
+  end
+  object Button1: TButton
+    Left = 48
+    Top = 317
+    Width = 145
+    Height = 41
+    Caption = 'Quitter'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 199
+    Top = 317
+    Width = 154
+    Height = 41
+    Caption = 'Connexion'
+    TabOrder = 3
+    OnClick = Button2Click
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=XE'
+      'User_Name=school'
+      'Password=0000'
+      'DriverID=Ora')
+    Connected = True
+    LoginPrompt = False
+    Left = 256
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from users')
+    Left = 328
+    Top = 65528
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 208
   end
 end

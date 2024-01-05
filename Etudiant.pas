@@ -10,31 +10,64 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Vcl.WindowsStore,
   Vcl.WinXCtrls, Data.DB, FireDAC.Comp.DataSet, System.Sensors,
   System.Sensors.Components, Vcl.ComCtrls, Data.Win.ADODB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, Vcl.Buttons,
+  FireDAC.Stan.Pool, FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef,
+  FireDAC.VCLUI.Wait;
 
 type
   TForm2 = class(TForm)
     PageControl1: TPageControl;
-    Etudiant: TTabSheet;
-    ADOConnection1: TADOConnection;
-    ADOQuery1: TADOQuery;
-    ADODataSet1: TADODataSet;
-    List: TTabSheet;
-    DBGrid1: TDBGrid;
+    TabSheet1: TTabSheet;
     Label1: TLabel;
-    Edit1: TEdit;
-    Save: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
     Label2: TLabel;
     Label3: TLabel;
-    Edit3: TEdit;
     Label4: TLabel;
-    Edit4: TEdit;
     Label5: TLabel;
-    Edit5: TEdit;
-    Button5: TButton;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBImage1: TDBImage;
+    DBImage2: TDBImage;
+    DBNavigator1: TDBNavigator;
+    TabSheet2: TTabSheet;
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    DBImage3: TDBImage;
+    DateTimePicker1: TDateTimePicker;
+    GroupBox1: TGroupBox;
+    Nom: TLabel;
+    search_n: TEdit;
+    Label10: TLabel;
+    Label11: TLabel;
+    DateTimePicker2: TDateTimePicker;
+    Label12: TLabel;
+    Label13: TLabel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    Label14: TLabel;
+    SpeedButton1: TSpeedButton;
+    ScrollBox1: TScrollBox;
+    DBImage4: TDBImage;
+    DBEdit4: TDBEdit;
+    Label15: TLabel;
+    Label16: TLabel;
+    DBEdit7: TDBEdit;
+    Label17: TLabel;
+    DateTimePicker3: TDateTimePicker;
+    RadioButton3: TRadioButton;
+    RadioButton4: TRadioButton;
+    Label18: TLabel;
+    DBEdit8: TDBEdit;
+    Edit2: TEdit;
+    procedure DBEdit8Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,5 +80,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm2.DBEdit8Change(Sender: TObject);
+begin
+ShowMessage(DBEdit8.Text)
+end;
 
 end.

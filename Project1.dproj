@@ -120,6 +120,11 @@
             <Form>Form5</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Gestion.pas">
+            <Form>Form6</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Helpers.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
