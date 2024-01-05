@@ -5,51 +5,61 @@ interface
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons;
- procedure FitGrid(Grid: TDBGrid);
+
 function GetSelectedID(const ADBGrid: TDBGrid; const ADataSet: TDataSet; const AFieldName: string): Integer;
+procedure FixDBGridColumnsWidth(const DBGrid: TDBGrid);
 implementation
 
 // Function to resize columns width
-procedure FitGrid(Grid: TDBGrid);
-const
-  C_Add=10;
+procedure FixDBGridColumnsWidth(const DBGrid: TDBGrid);
 var
-  ds: TDataSet;
-  bm: TBookmark;
-  i: Integer;
-  w: Integer;
-  a: Array of Integer;
+  i : integer;
+  TotWidth : integer;
+  VarWidth : integer;
+  ResizableColumnCount : integer;
+  AColumn : TColumn;
 begin
-  ds := Grid.DataSource.DataSet;
-  if Assigned(ds) then
+  //total width of all columns before resize
+  TotWidth := 0;
+  //how to divide any extra space in the grid
+  VarWidth := 0;
+  //how many columns need to be auto-resized
+  ResizableColumnCount := 0;
+
+  for i := 0 to -1 + DBGrid.Columns.Count do
   begin
-    ds.DisableControls;
-    bm := ds.GetBookmark;
-    try
-      ds.First;
-      SetLength(a, Grid.Columns.Count);
-      while not ds.Eof do
-      begin
-        for I := 0 to Grid.Columns.Count - 1 do
-        begin
-          if Assigned(Grid.Columns[i].Field) then
-          begin
-            w :=  Grid.Canvas.TextWidth(ds.FieldByName(Grid.Columns[i].Field.FieldName).DisplayText);
-            if a[i] < w  then
-               a[i] := w ;
-          end;
-        end;
-        ds.Next;
-      end;
-      for I := 0 to Grid.Columns.Count - 1 do
-        Grid.Columns[i].Width := a[i] + C_Add;
-        ds.GotoBookmark(bm);
-    finally
-      ds.FreeBookmark(bm);
-      ds.EnableControls;
+    TotWidth := TotWidth + DBGrid.Columns[i].Width;
+    if DBGrid.Columns[i].Field.Tag <> 0 then
+      Inc(ResizableColumnCount);
+  end;
+
+  //add 1px for the column separator line
+  if dgColLines in DBGrid.Options then
+    TotWidth := TotWidth + DBGrid.Columns.Count;
+
+  //add indicator column width
+  if dgIndicator in DBGrid.Options then
+    TotWidth := TotWidth + IndicatorWidth;
+
+  //width vale "left"
+  VarWidth :=  DBGrid.ClientWidth - TotWidth;
+
+  //Equally distribute VarWidth
+  //to all auto-resizable columns
+  if ResizableColumnCount > 0 then
+    VarWidth := varWidth div ResizableColumnCount;
+
+  for i := 0 to -1 + DBGrid.Columns.Count do
+  begin
+    AColumn := DBGrid.Columns[i];
+    if AColumn.Field.Tag <> 0 then
+    begin
+      AColumn.Width := AColumn.Width + VarWidth;
+      if AColumn.Width < AColumn.Field.Tag then
+        AColumn.Width := AColumn.Field.Tag;
     end;
   end;
-end;
+end; (*FixDBGridColumnsWidth*)
 
 function GetSelectedID(const ADBGrid: TDBGrid; const ADataSet: TDataSet; const AFieldName: string): Integer;
 begin

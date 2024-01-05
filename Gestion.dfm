@@ -29,6 +29,7 @@ object Form6: TForm6
         Width = 790
         Height = 438
         DataSource = PvDataSource
+        ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -39,10 +40,98 @@ object Form6: TForm6
       object GroupBox1: TGroupBox
         Left = 3
         Top = 3
-        Width = 790
+        Width = 310
         Height = 114
         Caption = 'Recherche'
         TabOrder = 1
+        object Label1: TLabel
+          Left = 144
+          Top = 13
+          Width = 32
+          Height = 15
+          Caption = 'Status'
+        end
+        object idpv: TLabeledEdit
+          Left = 11
+          Top = 34
+          Width = 121
+          Height = 23
+          EditLabel.Width = 60
+          EditLabel.Height = 15
+          EditLabel.Caption = 'Numero pv'
+          NumbersOnly = True
+          TabOrder = 0
+          Text = ''
+        end
+        object codeSection: TLabeledEdit
+          Left = 11
+          Top = 78
+          Width = 121
+          Height = 23
+          EditLabel.Width = 70
+          EditLabel.Height = 15
+          EditLabel.Caption = 'Code Section'
+          NumbersOnly = True
+          TabOrder = 1
+          Text = ''
+        end
+        object RadioButton1: TRadioButton
+          Left = 144
+          Top = 34
+          Width = 65
+          Height = 17
+          Caption = 'Ouvert'
+          TabOrder = 2
+        end
+        object RadioButton2: TRadioButton
+          Left = 144
+          Top = 57
+          Width = 65
+          Height = 17
+          Caption = 'Fermer'
+          TabOrder = 3
+        end
+        object Button1: TButton
+          Left = 144
+          Top = 80
+          Width = 89
+          Height = 25
+          Caption = 'Chercher'
+          TabOrder = 4
+        end
+      end
+      object Panel1: TPanel
+        Left = 384
+        Top = 3
+        Width = 345
+        Height = 101
+        Color = clAppWorkSpace
+        ParentBackground = False
+        TabOrder = 2
+        object SpeedButton1: TSpeedButton
+          Left = 216
+          Top = 6
+          Width = 113
+          Height = 22
+          Caption = 'Ajouter'
+          Transparent = False
+        end
+        object SpeedButton3: TSpeedButton
+          Left = 216
+          Top = 34
+          Width = 113
+          Height = 22
+          Caption = 'Fermer'
+          Transparent = False
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 216
+          Top = 64
+          Width = 113
+          Height = 22
+          Caption = 'Supprimer'
+          Transparent = False
+        end
       end
     end
     object TabSheet2: TTabSheet
@@ -107,9 +196,8 @@ object Form6: TForm6
         Text = 'idl'
         Width = 50
       end>
-    ExplicitLeft = 464
-    ExplicitTop = 8
-    ExplicitWidth = 0
+    ExplicitTop = 526
+    ExplicitWidth = 795
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

@@ -1,77 +1,97 @@
 CREATE TABLE formation (
     id_formation NUMBER PRIMARY KEY,
-    desigantion VARCHAR2(50),
-    type_formation VARCHAR2(20),
+    codeFormation varchar(8),
+    designation VARCHAR2(255),
+    typeFormation VARCHAR2(30),
     niveauQualification NUMBER
 );
-INSERT INTO formation (id_formation, desigantion, type_formation)
-VALUES  (1, 'Formation Informatique', 'TS');
-INSERT INTO formation (id_formation, desigantion, type_formation)
-VALUES  (2, 'Formation Comptable', 'BTS');
-INSERT INTO formation (id_formation, desigantion, type_formation)
-VALUES  (3, 'Formation Réseaux', 'TS');
-INSERT INTO formation (id_formation, desigantion, type_formation)
-VALUES  (4, 'Formation Marketing', 'BTS');
+-- Inserting data for Data Science Fundamentals
+INSERT INTO formation (id_formation, codeFormation, designation, typeFormation, niveauQualification)
+VALUES (1, 'TAG 1231', 'Data Science Fundamentals', 'cours du soir', 4);
+
+-- Inserting data for Financial Accounting Basics
+INSERT INTO formation (id_formation, codeFormation, designation, typeFormation, niveauQualification)
+VALUES (2, 'TAG 1243', 'Financial Accounting Basics', 'présentiel', 5);
+
+-- Inserting data for Web Development Bootcamp
+INSERT INTO formation (id_formation, codeFormation, designation, typeFormation, niveauQualification)
+VALUES (3, 'TAG 1256', 'Web Development Bootcamp', 'cours du soir', 4);
  
+
 CREATE TABLE matiere (
     id_matiere NUMBER PRIMARY KEY,
     id_formation NUMBER,
-    nom_matiere VARCHAR2(20),
+    nomMatiere VARCHAR2(120),
     coefficent NUMBER,
     CONSTRAINT fk_formation FOREIGN KEY (id_formation) REFERENCES formation(id_formation)
 );
 
-select * from matiere where id_formation=1;
--- For the first formation
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (1, 1, 'Mathématiques', 3);
+-- Inserting modules for Data Science Fundamentals
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (1, 1, 'Introduction to Statistics', 3);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (2, 1, 'Informatique', 4);
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (2, 1, 'Programming in Python', 4);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (3, 1, 'Physique', 3);
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (3, 1, 'Data Visualization', 3);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (4, 1, 'Langue Française', 2);
+-- Inserting modules for Financial Accounting Basics
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (4, 2, 'Financial Reporting', 4);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (5, 1, 'Histoire-Géographie', 2);
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (5, 2, 'Managerial Accounting', 3);
 
--- For the second formation
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (6, 2, 'Comptabilité', 4);
+-- Inserting modules for Web Development Bootcamp
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (6, 3, 'HTML and CSS Basics', 3);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (7, 2, 'Gestion Financière', 3);
+INSERT INTO matiere (id_matiere, id_formation, nomMatiere, coefficent)
+VALUES (7, 3, 'JavaScript Fundamentals', 4);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (8, 2, 'Droit des Affaires', 3);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (9, 2, 'Marketing', 2);
 
-INSERT INTO matiere (id_matiere, id_formation, nom_matiere, coefficent)
-VALUES (10, 2, 'Communication', 2);
+ CREATE TABLE section (
+    codeSection VARCHAR2(12) PRIMARY KEY,
+    formation number,
+    responsable VARCHAR2(50),
+    totalStagiaire NUMBER,
+    dontFille NUMBER,
+    dontHandicapes NUMBER,
+    dontEtrangers NUMBER, 
+    totalReussi NUMBER,
+    totalAjourne NUMBER,
+    totalExclue NUMBER,
+    CONSTRAINT fk_section_formation FOREIGN KEY (formation) REFERENCES formation(id_formation)
+);
+ CREATE TABLE particpantPv(
+id NUMBER PRIMARY KEY,
+id_pv NUMBER,
+nom VARCHAR2(30),
+prenom VARCHAR2(30),
+fonction VARCHAR2(50),
+grade VARCHAR2(20)
+);
 
- 
 CREATE TABLE pv (
     id_pv NUMBER PRIMARY KEY,
     id_formation NUMBER,
+    codeSection VARCHAR2(12),
     date_debut DATE,
     date_fin DATE,
     statut varchar(10) CHECK (statut IN ('open', 'closed')),
-    particpants VARCHAR2(20),
-    fonction VARCHAR2(20),
-    grade VARCHAR2(20),
-    signature BLOB,
-    CONSTRAINT fk_pv FOREIGN KEY (id_formation) REFERENCES formation(id_formation)
+    particpants number,
+    CONSTRAINT fk_pv FOREIGN KEY (id_formation) REFERENCES formation(id_formation),
+    CONSTRAINT fk_sec2_pv FOREIGN KEY (codeSection) REFERENCES section(codeSection),
+    CONSTRAINT fk_particpant_pv FOREIGN KEY (particpants) REFERENCES particpantPv(id)
 );
 
- 
+
 CREATE TABLE stagiaire (
     id_stagiaire NUMBER PRIMARY KEY,
     num_inscription VARCHAR2(12) UNIQUE,
+    codeSection VARCHAR2(12),
     id_pv NUMBER,
     nom VARCHAR2(20),
     prenom VARCHAR2(20),
@@ -84,20 +104,11 @@ CREATE TABLE stagiaire (
     photo BLOB,
     acte_de_naissance BLOB,
     formulaire BLOB,
-    CONSTRAINT fk_stg_pv FOREIGN KEY (id_pv) REFERENCES pv(id_pv)
+    CONSTRAINT fk_stg_pv FOREIGN KEY (id_pv) REFERENCES pv(id_pv),
+    CONSTRAINT fk_sec_pv FOREIGN KEY (codeSection) REFERENCES section(codeSection)
 );
 
-CREATE TABLE section (
-    codeSection VARCHAR2(12) PRIMARY KEY,
-    formation number,
-    responsable VARCHAR2(50),
-    totalStagiaire NUMBER,
-    dontFille NUMBER,
-    dontHandicapés NUMBER,
-    dontEtrangers NUMBER, 
-    CONSTRAINT fk_section_formation FOREIGN KEY (formation) REFERENCES formation(id_formation),
 
-)
 CREATE TABLE resultat_matiere (
     id_resultats NUMBER PRIMARY KEY,
     id_matiere NUMBER REFERENCES matiere(id_matiere),

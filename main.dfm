@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 0
-  Top = 0
+  Left = 143
+  Top = 83
   Caption = 'GDS'
   ClientHeight = 601
   ClientWidth = 1238
@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   OnClose = FormClose
   OnShow = FormShow
   TextHeight = 15
