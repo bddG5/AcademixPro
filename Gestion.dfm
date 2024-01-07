@@ -1,9 +1,10 @@
 object Form6: TForm6
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Gestion'
-  ClientHeight = 546
-  ClientWidth = 799
+  ClientHeight = 580
+  ClientWidth = 805
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,7 +13,6 @@ object Form6: TForm6
   Font.Style = []
   Position = poScreenCenter
   PrintScale = poPrintToFit
-  OnShow = FormShow
   TextHeight = 15
   object PageControl1: TPageControl
     Left = 0
@@ -23,12 +23,55 @@ object Form6: TForm6
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'PV'
+      object SpeedButton1: TSpeedButton
+        Left = 677
+        Top = 17
+        Width = 113
+        Height = 30
+        Caption = 'Cr'#233'er'
+        Transparent = False
+        OnClick = SpeedButton1Click
+      end
+      object SpeedButton3: TSpeedButton
+        Left = 677
+        Top = 53
+        Width = 113
+        Height = 30
+        Caption = 'Fermer'
+        Transparent = False
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 677
+        Top = 89
+        Width = 113
+        Height = 33
+        Caption = 'Supprimer'
+        Transparent = False
+      end
+      object SpeedButton4: TSpeedButton
+        Left = 561
+        Top = 17
+        Width = 113
+        Height = 30
+        Caption = 'Document'
+        Transparent = False
+      end
+      object SpeedButton5: TSpeedButton
+        Left = 561
+        Top = 53
+        Width = 113
+        Height = 30
+        Caption = 'Rafraichir'
+        Transparent = False
+        OnClick = SpeedButton5Click
+      end
       object DBGrid1: TDBGrid
         Left = 3
-        Top = 123
+        Top = 144
         Width = 790
-        Height = 438
+        Height = 417
         DataSource = PvDataSource
+        PopupMenu = PopupMenu1
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -38,22 +81,29 @@ object Form6: TForm6
         TitleFont.Style = []
       end
       object GroupBox1: TGroupBox
-        Left = 3
+        Left = 0
         Top = 3
-        Width = 310
-        Height = 114
+        Width = 553
+        Height = 126
         Caption = 'Recherche'
         TabOrder = 1
         object Label1: TLabel
-          Left = 144
-          Top = 13
+          Left = 340
+          Top = 25
           Width = 32
           Height = 15
           Caption = 'Status'
         end
+        object Label2: TLabel
+          Left = 153
+          Top = 25
+          Width = 55
+          Height = 15
+          Caption = 'Formation'
+        end
         object idpv: TLabeledEdit
           Left = 11
-          Top = 34
+          Top = 43
           Width = 121
           Height = 23
           EditLabel.Width = 60
@@ -65,7 +115,7 @@ object Form6: TForm6
         end
         object codeSection: TLabeledEdit
           Left = 11
-          Top = 78
+          Top = 90
           Width = 121
           Height = 23
           EditLabel.Width = 70
@@ -76,61 +126,39 @@ object Form6: TForm6
           Text = ''
         end
         object RadioButton1: TRadioButton
-          Left = 144
-          Top = 34
+          Left = 340
+          Top = 49
           Width = 65
           Height = 17
           Caption = 'Ouvert'
           TabOrder = 2
         end
-        object RadioButton2: TRadioButton
-          Left = 144
-          Top = 57
+        object pv_fermer: TRadioButton
+          Left = 340
+          Top = 71
           Width = 65
-          Height = 17
+          Height = 20
           Caption = 'Fermer'
           TabOrder = 3
         end
         object Button1: TButton
-          Left = 144
-          Top = 80
-          Width = 89
+          Left = 423
+          Top = 90
+          Width = 114
           Height = 25
           Caption = 'Chercher'
           TabOrder = 4
+          OnClick = Button1Click
         end
-      end
-      object Panel1: TPanel
-        Left = 384
-        Top = 3
-        Width = 345
-        Height = 101
-        Color = clAppWorkSpace
-        ParentBackground = False
-        TabOrder = 2
-        object SpeedButton1: TSpeedButton
-          Left = 216
-          Top = 6
-          Width = 113
-          Height = 22
-          Caption = 'Ajouter'
-          Transparent = False
-        end
-        object SpeedButton3: TSpeedButton
-          Left = 216
-          Top = 34
-          Width = 113
-          Height = 22
-          Caption = 'Fermer'
-          Transparent = False
-        end
-        object SpeedButton2: TSpeedButton
-          Left = 216
-          Top = 64
-          Width = 113
-          Height = 22
-          Caption = 'Supprimer'
-          Transparent = False
+        object pv_formation: TDBComboBox
+          Left = 153
+          Top = 43
+          Width = 172
+          Height = 23
+          DataField = 'DESIGNATION'
+          DataSource = FormationDataSource
+          ReadOnly = True
+          TabOrder = 5
         end
       end
     end
@@ -140,8 +168,8 @@ object Form6: TForm6
       object DBGrid2: TDBGrid
         Left = 4
         Top = 49
-        Width = 349
-        Height = 442
+        Width = 786
+        Height = 192
         DataSource = FormationDataSource
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -152,10 +180,10 @@ object Form6: TForm6
         OnCellClick = DBGrid2CellClick
       end
       object DBGrid3: TDBGrid
-        Left = 425
-        Top = 49
-        Width = 349
-        Height = 441
+        Left = 0
+        Top = 285
+        Width = 790
+        Height = 210
         DataSource = matiereDataSource
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
@@ -167,15 +195,15 @@ object Form6: TForm6
       object DBNavigator1: TDBNavigator
         Left = 4
         Top = 9
-        Width = 350
+        Width = 780
         Height = 36
         DataSource = FormationDataSource
         TabOrder = 2
       end
       object DBNavigator2: TDBNavigator
-        Left = 423
-        Top = 10
-        Width = 360
+        Left = 2
+        Top = 245
+        Width = 780
         Height = 36
         DataSource = matiereDataSource
         TabOrder = 3
@@ -184,8 +212,8 @@ object Form6: TForm6
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 527
-    Width = 799
+    Top = 561
+    Width = 805
     Height = 19
     Panels = <
       item
@@ -196,8 +224,8 @@ object Form6: TForm6
         Text = 'idl'
         Width = 50
       end>
-    ExplicitTop = 526
-    ExplicitWidth = 795
+    ExplicitTop = 552
+    ExplicitWidth = 799
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -249,5 +277,36 @@ object Form6: TForm6
     DataSet = PvQuery
     Left = 104
     Top = 423
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    AfterOpen = FormationQueryAfterOpen
+    ConstraintsEnabled = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from formation')
+    Left = 688
+    Top = 232
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 680
+    Top = 296
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 480
+    Top = 8
+    object AjouterStagaire: TMenuItem
+    end
+    object Ajouterunstagaire1: TMenuItem
+      Caption = 'Ajouter stagaire'
+      OnClick = Ajouterunstagaire1Click
+    end
+    object Modifier1: TMenuItem
+      Caption = 'Modifier'
+    end
+    object Voirdocument1: TMenuItem
+      Caption = 'Voir document'
+    end
   end
 end

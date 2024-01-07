@@ -125,6 +125,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Helpers.pas"/>
+        <DCCReference Include="pv_new.pas">
+            <Form>Form7</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -53,7 +53,7 @@ VALUES (7, 3, 'JavaScript Fundamentals', 4);
 
 
  CREATE TABLE section (
-    codeSection VARCHAR2(12) PRIMARY KEY,
+    codeSection VARCHAR2(12) PRIMARY KEY UNIQUE,
     formation number,
     responsable VARCHAR2(50),
     totalStagiaire NUMBER,
@@ -65,14 +65,15 @@ VALUES (7, 3, 'JavaScript Fundamentals', 4);
     totalExclue NUMBER,
     CONSTRAINT fk_section_formation FOREIGN KEY (formation) REFERENCES formation(id_formation)
 );
- CREATE TABLE particpantPv(
+
+CREATE TABLE particpantPv(
 id NUMBER PRIMARY KEY,
-id_pv NUMBER,
 nom VARCHAR2(30),
 prenom VARCHAR2(30),
 fonction VARCHAR2(50),
 grade VARCHAR2(20)
 );
+DROP TABLE particpantPv  CASCADE CONSTRAINTS;
 
 CREATE TABLE pv (
     id_pv NUMBER PRIMARY KEY,
@@ -87,23 +88,24 @@ CREATE TABLE pv (
     CONSTRAINT fk_particpant_pv FOREIGN KEY (particpants) REFERENCES particpantPv(id)
 );
 
-
+select * from stagiaire;
+delete from stagiaire where id_stagiaire =1;
 CREATE TABLE stagiaire (
     id_stagiaire NUMBER PRIMARY KEY,
     num_inscription VARCHAR2(12) UNIQUE,
-    codeSection VARCHAR2(12),
-    id_pv NUMBER,
-    nom VARCHAR2(20),
-    prenom VARCHAR2(20),
-    adresse varchar(100),
-    statut varchar(10),
-    ddn DATE,
-    sex VARCHAR2(20) CHECK (sex IN ('male', 'femelle')),
-    date_inscription DATE,
-    cni NUMBER,
-    photo BLOB,
-    acte_de_naissance BLOB,
-    formulaire BLOB,
+    codeSection VARCHAR2(12) NOT NULL,
+    id_pv NUMBER NOT NULL,
+    nom VARCHAR2(20) NOT NULL,
+    prenom VARCHAR2(20) NOT NULL,
+    adresse varchar(100) NOT NULL,
+    statut varchar(10) NOT NULL,
+    ddn DATE NOT NULL,
+    sex VARCHAR2(20) CHECK (sex IN ('male', 'femelle')) NOT NULL,
+    date_inscription DATE NOT NULL,
+    cni NUMBER NOT NULL,
+    photo BLOB NOT NULL,
+    acte_de_naissance BLOB NOT NULL,
+    formulaire BLOB NOT NULL,
     CONSTRAINT fk_stg_pv FOREIGN KEY (id_pv) REFERENCES pv(id_pv),
     CONSTRAINT fk_sec_pv FOREIGN KEY (codeSection) REFERENCES section(codeSection)
 );

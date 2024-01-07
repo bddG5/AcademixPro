@@ -4,10 +4,12 @@ interface
         uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, FireDAC.Comp.Client;
 
 function GetSelectedID(const ADBGrid: TDBGrid; const ADataSet: TDataSet; const AFieldName: string): Integer;
 procedure FixDBGridColumnsWidth(const DBGrid: TDBGrid);
+function IncrementId(const dbQuery: TFDQuery; const tableName, fieldName: string): string;
+function GenerateNumInscription: string;
 implementation
 
 // Function to resize columns width
@@ -77,6 +79,38 @@ begin
     // Get the ID from the selected row
     Result := ADataSet.FieldByName(AFieldName).AsInteger;
   end;
+end;
+
+function IncrementId(const dbQuery: TFDQuery; const tableName, fieldName: string): string;
+var
+  maxId: Integer;
+begin
+  Result := '1'; // Default value if no records are found
+
+  dbQuery.SQL.Clear();
+  dbQuery.SQL.Add(Format('SELECT COALESCE(MAX(%s), 0) + 1 FROM %s', [fieldName, tableName]));
+  dbQuery.Open();
+
+  if not dbQuery.IsEmpty then
+    maxId := dbQuery.Fields[0].AsInteger
+  else
+    maxId := 1;
+
+  Result := IntToStr(maxId);
+end;
+ function GenerateNumInscription: string;
+var
+  year, month, day: Word;
+  randomNum: Integer;
+begin
+  // Get the current date components
+  DecodeDate(Now, year, month, day);
+
+  // Generate a random number (assuming you want it within a certain range)
+  randomNum := Random(1000); // Adjust the range as needed
+
+  // Create the formatted string
+  Result := Format('%04d/%d/%d/CS', [year, randomNum, day]);
 end;
 end.
 
