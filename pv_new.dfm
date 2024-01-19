@@ -40,6 +40,7 @@ object Form7: TForm7
     Font.Name = 'Segoe UI Semibold'
     Font.Style = [fsBold]
     ParentFont = False
+    OnClick = SpeedButton2Click
   end
   object Label1: TLabel
     Left = 8

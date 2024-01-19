@@ -13,13 +13,14 @@ object Form6: TForm6
   Font.Style = []
   Position = poScreenCenter
   PrintScale = poPrintToFit
+  OnShow = FormShow
   TextHeight = 15
   object PageControl1: TPageControl
     Left = 0
     Top = 0
     Width = 801
     Height = 593
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'PV'
@@ -39,6 +40,7 @@ object Form6: TForm6
         Height = 30
         Caption = 'Fermer'
         Transparent = False
+        OnClick = SpeedButton3Click
       end
       object SpeedButton2: TSpeedButton
         Left = 677
@@ -47,6 +49,7 @@ object Form6: TForm6
         Height = 33
         Caption = 'Supprimer'
         Transparent = False
+        OnClick = SpeedButton2Click
       end
       object SpeedButton4: TSpeedButton
         Left = 561
@@ -79,6 +82,7 @@ object Form6: TForm6
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnCellClick = DBGrid1CellClick
       end
       object GroupBox1: TGroupBox
         Left = 0
@@ -150,16 +154,14 @@ object Form6: TForm6
           TabOrder = 4
           OnClick = Button1Click
         end
-        object pv_formation: TDBComboBox
-          Left = 153
-          Top = 43
-          Width = 172
-          Height = 23
-          DataField = 'DESIGNATION'
-          DataSource = FormationDataSource
-          ReadOnly = True
-          TabOrder = 5
-        end
+      end
+      object pv_formation: TComboBox
+        Left = 153
+        Top = 49
+        Width = 168
+        Height = 23
+        TabOrder = 2
+        OnChange = pv_formationChange
       end
     end
     object TabSheet2: TTabSheet
@@ -224,8 +226,8 @@ object Form6: TForm6
         Text = 'idl'
         Width = 50
       end>
-    ExplicitTop = 552
-    ExplicitWidth = 799
+    ExplicitTop = 560
+    ExplicitWidth = 801
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -294,12 +296,10 @@ object Form6: TForm6
     Top = 296
   end
   object PopupMenu1: TPopupMenu
-    Left = 480
-    Top = 8
-    object AjouterStagaire: TMenuItem
-    end
+    Left = 544
+    Top = 65530
     object Ajouterunstagaire1: TMenuItem
-      Caption = 'Ajouter stagaire'
+      Caption = 'Stagaires'
       OnClick = Ajouterunstagaire1Click
     end
     object Modifier1: TMenuItem

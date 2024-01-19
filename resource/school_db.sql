@@ -110,7 +110,7 @@ CREATE TABLE stagiaire (
     CONSTRAINT fk_sec_pv FOREIGN KEY (codeSection) REFERENCES section(codeSection)
 );
 
-
+select * from stagiaire;
 CREATE TABLE resultat_matiere (
     id_resultats NUMBER PRIMARY KEY,
     id_matiere NUMBER REFERENCES matiere(id_matiere),
@@ -126,9 +126,22 @@ CREATE TABLE resultats_semestre (
     id_stagiaire NUMBER REFERENCES stagiaire(id_stagiaire),
     semestre number , ---> 1  2  3  4  5  6
     moy NUMBER,
+    mention VARCHAR2(30),
     CONSTRAINT fk1_stg FOREIGN KEY (id_stagiaire) REFERENCES stagiaire(id_stagiaire)
 );
-
+SELECT
+    rs.id_stagiaire,
+    rs.semestre,
+    rm.id_matiere,
+    rm.note1 AS note_matiere1,
+    rm.note2 AS note_matiere2,
+    rm.moy AS moy_matiere
+FROM
+    resultats_semestre rs
+JOIN
+    resultat_matiere rm ON rs.id_stagiaire = rm.id_stagiaire
+WHERE
+    rs.semestre = 1; -- Vous pouvez changer le numéro du semestre ici
 
 CREATE TABLE diplome (
     id_serie NUMBER PRIMARY KEY,
@@ -182,7 +195,7 @@ CREATE TABLE rectification (
     heure VARCHAR2(20),
     defaut VARCHAR2(38),
     methode_rectif VARCHAR2(20),
-    resultat VARCHAR2(20),
+
     CONSTRAINT fk1_rectification FOREIGN KEY (id_serie) REFERENCES diplome(id_serie),
     CONSTRAINT fk2_rectification FOREIGN KEY (id_stagiaire) REFERENCES stagiaire(id_stagiaire)
 );

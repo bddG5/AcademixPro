@@ -698,12 +698,10 @@ object Form5: TForm5
       'User_Name=school'
       'Password=0000'
       'DriverID=Ora')
-    Connected = True
     LoginPrompt = False
     Left = 256
   end
   object FDQuery1: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from users')

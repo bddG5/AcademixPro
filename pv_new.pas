@@ -37,6 +37,7 @@ type
     procedure FormationQueryAfterOpen(DataSet: TDataSet);
     procedure SpeedButton1Click(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,7 +66,8 @@ end;
 
 procedure TForm7.SpeedButton1Click(Sender: TObject);
 var
-  pv_id, start_date, end_date, formation_id, section_code,particpants_id: string;
+  pv_id, start_date, end_date, formation_id, section_code,
+    particpants_id: string;
   canCreate: Boolean;
 
 begin
@@ -79,7 +81,8 @@ begin
   ///
 
   canCreate := true;
-  formation_id := IntToStr(GetSelectedID(DBGrid1, FormationDataSource.DataSet, 'id_formation'));
+  formation_id := IntToStr(GetSelectedID(DBGrid1, FormationDataSource.DataSet,
+    'id_formation'));
   start_date := DateToStr(date_start.Date);
   end_date := DateToStr(date_end.Date);
 
@@ -98,46 +101,50 @@ begin
   end;
 
   section_code := codeFormation + '/' + Edit1.Text;
-  if Length(section_code)>12 then
-    begin
+  if Length(section_code) > 12 then
+  begin
     canCreate := false;
-      ShowMessage('le code de la section ne peux avoir plus de 12 caractère')
-    end;
+    ShowMessage('le code de la section ne peux avoir plus de 12 caractère')
+  end;
   if canCreate then
   begin
     PvQuery.Active := false;
     PvQuery.SQL.Clear();
 
     // creation d'une nouvelle section & particpantPv
-    PvQuery.SQL.Add(
-    Format('INSERT INTO section (codeSection, formation, responsable, totalStagiaire, dontFille, dontHandicapes, dontEtrangers, totalReussi, totalAjourne, totalExclue) ' +
-           'VALUES (%s, %s, %s, 0, 0, 0, 0, 0, 0, 0)',
-           [QuotedStr(section_code), formation_id, QuotedStr(Edit2.Text)]));
+    PvQuery.SQL.Add
+      (Format('INSERT INTO section (codeSection, formation, responsable, totalStagiaire, dontFille, dontHandicapes, dontEtrangers, totalReussi, totalAjourne, totalExclue) '
+      + 'VALUES (%s, %s, %s, 0, 0, 0, 0, 0, 0, 0)', [QuotedStr(section_code),
+      formation_id, QuotedStr(Edit2.Text)]));
     PvQuery.ExecSQL;
     PvQuery.SQL.Clear();
 
+    PvQuery.SQL.Add(Format('SELECT COALESCE(MAX(%s), 0) + 1 FROM %s',
+      ['id', 'particpantPv']));
+    PvQuery.Open();
 
-  PvQuery.SQL.Add(Format('SELECT COALESCE(MAX(%s), 0) + 1 FROM %s', ['id', 'particpantPv']));
-  PvQuery.Open();
+    particpants_id := PvQuery.Fields[0].AsString;
 
-  if not PvQuery.IsEmpty then
-    particpants_id := PvQuery.Fields[0].AsString
-  else
-    particpants_id := '1';
     PvQuery.SQL.Clear();
-    PvQuery.SQL.Add(
-     Format('INSERT INTO particpantPv (id, nom, prenom, fonction, grade) VALUES (%s, ''   '', ''   '', ''   '', ''   '')',
-           [particpants_id]));
+    PvQuery.SQL.Add
+      (Format('INSERT INTO particpantPv (id, nom, prenom, fonction, grade) VALUES (%s, ''   '', ''   '', ''   '', ''   '')',
+      [particpants_id]));
     PvQuery.ExecSQL;
     PvQuery.SQL.Clear();
-    PvQuery.SQL.Add(
-     Format('INSERT INTO pv (id_pv, id_formation, codeSection, date_debut, date_fin, statut, particpants) ' +
-            'VALUES (%s, %s, %s, TO_DATE(%s, ''DD/MM/YYYY''), TO_DATE(%s, ''DD/MM/YYYY''), ''open'', 0)',
-           [pv_id, formation_id, QuotedStr(section_code), QuotedStr(start_date), QuotedStr(end_date)]));
+    PvQuery.SQL.Add
+      (Format('INSERT INTO pv (id_pv, id_formation, codeSection, date_debut, date_fin, statut, particpants) '
+      + 'VALUES (%s, %s, %s, TO_DATE(%s, ''DD/MM/YYYY''), TO_DATE(%s, ''DD/MM/YYYY''), ''open'', 0)',
+      [pv_id, formation_id, QuotedStr(section_code), QuotedStr(start_date),
+      QuotedStr(end_date)]));
     PvQuery.ExecSQL;
     PvQuery.Active := true;
     ShowMessage('Record inserted successfully.');
   end;
+end;
+
+procedure TForm7.SpeedButton2Click(Sender: TObject);
+begin
+  close;
 end;
 
 end.

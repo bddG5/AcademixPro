@@ -1,0 +1,126 @@
+<body class="flex--col">
+  <div class="header--container flex--col">
+    <div class="header">
+      <h3>REPUBLIQUE ALGERIENNE DEMOCRATIQUE ET POPULAIRE</h3>
+      <h3>MINSTERE DE LA FORMATION ET DE L'ENSEIGENEMENT PROFESSIONNELS</h3>
+    </div>
+    <div class="header-2">
+      <span>D. F.E P WILAYA: Tizi-Ouzou</span>
+      <span>Etablissement : I N FS F P - Imerzoukene Mohand Arezki</span>
+    </div>
+    <div class="header">
+      <h3>PROCES VERBAL D'OUVERTURE DE LA SECTION</h3>
+      <h3>#FORMATION_TYPE#</h3>
+    </div>
+  </div>
+  <div class="body--container flex--col">
+    <div class="flex--row">
+      <span>Numéro : #ID#</span>
+      <div style="display: flex; gap: 5px">
+        <span>Date : </span>
+        <span id="nowDate"> #DATE#</span>
+      </div>
+    </div>
+
+    <div class="flex--row">
+      <span>Spécialité : #FORMATION_NAME#</span>
+    </div>
+
+    <div class="flex--row">
+      <span>Code de la section : #SECTION_CODE#</span>
+      <span>Niveau de qualification : #niv_qal# </span>
+    </div>
+
+    <div class="flex--row">
+      <span>Debut de la formation : #FORMATION_START#</span>
+      <span>Fin de la formation : #FORMATION_END# </span>
+    </div>
+
+    <div style="display: flex; flex-direction: row;  justify-content: space-evenly;">
+      <span>Nombre d'apprenants : #STUDENT_TOTAL#</span>
+      <span>dont fille : #STUDENT_TOTAL# </span>
+      <span>dont handicapés : #STUDENT_HANDICAP# </span>
+      <span>dont étranger : #STUDENT_FOREIGN# </span>
+    </div>
+
+    <div class="flex--row">
+        <span>Responsable de la section : #SECTION_ADMIN#</span>
+      </div>
+      
+    <div class="flex--row--last">
+        <span>Responsable de la section : #SECTION_ADMIN#</span>
+      </div>
+  </div>
+</body>
+
+<style>
+  @media print {
+    body {
+      width: 21cm; /* A4 width */
+      height: 29.7cm; /* A4 height */
+      margin: 1cm; /* Set margins as needed */
+    }
+
+    @page {
+      size: A4;
+      margin: 1cm;
+    }
+  }
+  html,
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .header--container {
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  .header {
+    display: flex;
+    line-height: 0%;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: underline;
+  }
+  .header-2 {
+    display: flex;
+    line-height: 1.8;
+    flex-direction: column;
+  }
+ 
+  .flex--row {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+   
+  }
+  .flex--row--last{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 50%;
+  }
+  .flex--col {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+  .body--container {
+    gap: 30px;
+  }
+</style>
+
+<script>
+  let dateLabel = document.getElementById("nowDate");
+  let currentDate = new Date();
+  let formattedDate = formatDate(currentDate);
+  dateLabel.innerHTML = formattedDate;
+
+  function formatDate(date) {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    return date.toLocaleDateString("fr-fr", options).toUpperCase();
+  }
+</script>

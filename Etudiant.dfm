@@ -14,24 +14,31 @@ object Form2: TForm2
   Position = poDesktopCenter
   OnShow = FormShow
   TextHeight = 15
-  object Label23: TLabel
-    Left = 724
-    Top = 308
+  object Label4: TLabel
+    Left = 668
+    Top = 235
     Width = 71
     Height = 15
-    Caption = 'FORMULAIRE'
+    Caption = 'Note examen'
+  end
+  object Label42: TLabel
+    Left = 930
+    Top = 243
+    Width = 90
+    Height = 15
+    Caption = 'Note du controle'
   end
   object PageControl1: TPageControl
     Left = 0
-    Top = 0
+    Top = -6
     Width = 1111
     Height = 601
-    ActivePage = TabSheet2
+    ActivePage = TabSheet3
     TabOrder = 0
-    object TabSheet2: TTabSheet
+    object TabSheet3: TTabSheet
       Caption = 'List'
       ImageIndex = 1
-      object SpeedButton2: TSpeedButton
+      object SpeedButton6: TSpeedButton
         Left = 630
         Top = 7
         Width = 113
@@ -40,23 +47,25 @@ object Form2: TForm2
         Transparent = False
         OnClick = SpeedButton2Click
       end
-      object SpeedButton3: TSpeedButton
+      object SpeedButton7: TSpeedButton
         Left = 630
         Top = 43
         Width = 113
         Height = 30
         Caption = 'Modifier'
         Transparent = False
+        OnClick = SpeedButton7Click
       end
-      object SpeedButton4: TSpeedButton
+      object SpeedButton8: TSpeedButton
         Left = 630
         Top = 79
         Width = 113
         Height = 33
         Caption = 'Supprimer'
         Transparent = False
+        OnClick = SpeedButton4Click
       end
-      object SpeedButton5: TSpeedButton
+      object SpeedButton9: TSpeedButton
         Left = 511
         Top = 7
         Width = 113
@@ -78,56 +87,56 @@ object Form2: TForm2
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
       end
-      object GroupBox1: TGroupBox
+      object GroupBox5: TGroupBox
         Left = 3
         Top = 2
         Width = 501
         Height = 114
         Caption = 'Recherche'
         TabOrder = 1
-        object Nom: TLabel
+        object Label7: TLabel
           Left = 16
           Top = 18
           Width = 27
           Height = 15
           Caption = 'Nom'
         end
-        object Label11: TLabel
+        object Label8: TLabel
           Left = 16
           Top = 66
           Width = 42
           Height = 15
           Caption = 'Prenom'
         end
-        object Label13: TLabel
+        object Label9: TLabel
           Left = 177
           Top = 18
           Width = 94
           Height = 15
           Caption = 'Date de naissance'
         end
-        object Label14: TLabel
+        object Label10: TLabel
           Left = 177
           Top = 66
           Width = 18
           Height = 15
           Caption = 'Sex'
         end
-        object SpeedButton1: TSpeedButton
+        object SpeedButton10: TSpeedButton
           Left = 337
           Top = 73
           Width = 136
           Height = 30
           Caption = 'Chercher'
         end
-        object search_n: TEdit
+        object Edit1: TEdit
           Left = 16
           Top = 37
           Width = 146
           Height = 23
           TabOrder = 0
         end
-        object DateTimePicker2: TDateTimePicker
+        object DateTimePicker1: TDateTimePicker
           Left = 177
           Top = 37
           Width = 137
@@ -136,7 +145,7 @@ object Form2: TForm2
           Time = 0.792888969910563900
           TabOrder = 1
         end
-        object RadioButton1: TRadioButton
+        object RadioButton3: TRadioButton
           Left = 186
           Top = 87
           Width = 56
@@ -144,7 +153,7 @@ object Form2: TForm2
           Caption = 'Male'
           TabOrder = 2
         end
-        object RadioButton2: TRadioButton
+        object RadioButton4: TRadioButton
           Left = 248
           Top = 87
           Width = 66
@@ -152,14 +161,14 @@ object Form2: TForm2
           Caption = 'Femelle'
           TabOrder = 3
         end
-        object Edit2: TEdit
+        object Edit3: TEdit
           Left = 16
           Top = 81
           Width = 146
           Height = 23
           TabOrder = 4
         end
-        object LabeledEdit1: TLabeledEdit
+        object LabeledEdit2: TLabeledEdit
           Left = 337
           Top = 37
           Width = 136
@@ -171,94 +180,94 @@ object Form2: TForm2
           Text = ''
         end
       end
-      object ScrollBox1: TScrollBox
+      object ScrollBox2: TScrollBox
         Left = 757
         Top = 3
         Width = 349
         Height = 562
         BevelInner = bvLowered
         TabOrder = 2
-        object Label15: TLabel
+        object Label12: TLabel
           Left = 143
           Top = 63
           Width = 27
           Height = 15
           Caption = 'Nom'
-          FocusControl = DBEdit4
+          FocusControl = DBEdit5
         end
-        object Label16: TLabel
+        object Label17: TLabel
           Left = 143
           Top = 115
           Width = 42
           Height = 15
           Caption = 'Prenom'
-          FocusControl = DBEdit7
+          FocusControl = DBEdit6
         end
-        object Label18: TLabel
+        object Label23: TLabel
           Left = 143
           Top = 165
           Width = 18
           Height = 15
           Caption = 'Sex'
         end
-        object Label20: TLabel
+        object Label26: TLabel
           Left = 8
           Top = 210
           Width = 41
           Height = 15
           Caption = 'Adresse'
-          FocusControl = DBEdit10
+          FocusControl = db_sex
         end
-        object Label19: TLabel
+        object Label29: TLabel
           Left = 7
           Top = 271
           Width = 90
           Height = 15
           Caption = 'N'#176'Carte National'
-          FocusControl = DBEdit11
+          FocusControl = DBEdit13
         end
-        object Label21: TLabel
+        object Label30: TLabel
           Left = 148
           Top = 271
           Width = 94
           Height = 15
           Caption = 'Date de naissance'
         end
-        object Label22: TLabel
+        object Label31: TLabel
           Left = 46
           Top = 439
           Width = 57
           Height = 15
           Caption = 'Formulaire'
         end
-        object Label24: TLabel
+        object Label32: TLabel
           Left = 43
           Top = 751
           Width = 96
           Height = 15
           Caption = 'Acte de Naissance'
         end
-        object Label25: TLabel
+        object Label33: TLabel
           Left = 3
           Top = 946
           Width = 87
           Height = 15
           Caption = '                             '
         end
-        object Label27: TLabel
+        object Label34: TLabel
           Left = 6
           Top = 326
           Width = 93
           Height = 15
           Caption = 'Date d'#39'inscription'
         end
-        object Label28: TLabel
+        object Label35: TLabel
           Left = 156
           Top = 327
           Width = 32
           Height = 15
           Caption = 'Status'
-          FocusControl = DBEdit11
+          FocusControl = DBEdit13
         end
         object save_btn: TSpeedButton
           Left = 167
@@ -269,7 +278,7 @@ object Form2: TForm2
           Visible = False
           OnClick = save_btnClick
         end
-        object Label1: TLabel
+        object Label36: TLabel
           Left = 3
           Top = 1111
           Width = 96
@@ -285,7 +294,7 @@ object Form2: TForm2
           Visible = False
           OnClick = annuler_btnClick
         end
-        object DBImage4: TDBImage
+        object DBImage1: TDBImage
           Left = 8
           Top = 75
           Width = 126
@@ -294,8 +303,9 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           Stretch = True
           TabOrder = 0
+          OnClick = DBImage4Click
         end
-        object DBEdit4: TDBEdit
+        object DBEdit5: TDBEdit
           Left = 140
           Top = 84
           Width = 173
@@ -304,7 +314,7 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           TabOrder = 1
         end
-        object DBEdit7: TDBEdit
+        object DBEdit6: TDBEdit
           Left = 143
           Top = 136
           Width = 170
@@ -313,7 +323,7 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           TabOrder = 2
         end
-        object GroupBox2: TGroupBox
+        object GroupBox6: TGroupBox
           Left = 3
           Top = 3
           Width = 320
@@ -332,10 +342,10 @@ object Form2: TForm2
             Width = 25
             Height = 17
             Caption = 'num'
-            FocusControl = DBEdit10
+            FocusControl = db_sex
           end
         end
-        object da: TDBEdit
+        object DBEdit9: TDBEdit
           Left = 6
           Top = 233
           Width = 307
@@ -344,16 +354,17 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           TabOrder = 4
         end
-        object DBEdit10: TDBEdit
-          Left = 140
-          Top = 183
+        object db_sex: TDBEdit
+          Left = 68
+          Top = 206
           Width = 173
           Height = 23
           DataField = 'SEX'
           DataSource = EtudiantQueryDataSource
           TabOrder = 5
+          Visible = False
         end
-        object DBEdit11: TDBEdit
+        object DBEdit13: TDBEdit
           Left = 6
           Top = 294
           Width = 139
@@ -362,7 +373,7 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           TabOrder = 6
         end
-        object DateTimePicker4: TDateTimePicker
+        object DateTimePicker5: TDateTimePicker
           Left = 152
           Top = 292
           Width = 161
@@ -372,7 +383,7 @@ object Form2: TForm2
           TabOrder = 7
           OnChange = DateTimePicker4Change
         end
-        object DBImage5: TDBImage
+        object DBImage2: TDBImage
           Left = 46
           Top = 460
           Width = 257
@@ -381,8 +392,9 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           Stretch = True
           TabOrder = 8
+          OnClick = DBImage5Click
         end
-        object DBImage6: TDBImage
+        object DBImage3: TDBImage
           Left = 43
           Top = 775
           Width = 257
@@ -391,6 +403,7 @@ object Form2: TForm2
           DataSource = EtudiantQueryDataSource
           Stretch = True
           TabOrder = 9
+          OnClick = DBImage6Click
         end
         object DateTimePicker3: TDateTimePicker
           Left = 6
@@ -402,12 +415,12 @@ object Form2: TForm2
           TabOrder = 10
           OnChange = DateTimePicker3Change
         end
-        object DBEdit8: TDBEdit
+        object DBEdit14: TDBEdit
           Left = 156
           Top = 348
           Width = 160
           Height = 23
-          DataField = 'CNI'
+          DataField = 'STATUT'
           DataSource = EtudiantQueryDataSource
           TabOrder = 11
         end
@@ -431,7 +444,7 @@ object Form2: TForm2
           TabOrder = 13
           Visible = False
         end
-        object DBEdit1: TDBEdit
+        object db_ddn: TDBEdit
           Left = 3
           Top = 49
           Width = 110
@@ -441,7 +454,7 @@ object Form2: TForm2
           TabOrder = 14
           Visible = False
         end
-        object DBEdit_ddn: TDBEdit
+        object db_dateInscri: TDBEdit
           Left = 119
           Top = 46
           Width = 110
@@ -477,13 +490,199 @@ object Form2: TForm2
           EditLabel.Caption = 'Code de section'
           EditLabel.Layout = tlCenter
         end
+        object ComboBox1: TComboBox
+          Left = 140
+          Top = 181
+          Width = 173
+          Height = 23
+          TabOrder = 18
+          Text = 'sex'
+          OnChange = ComboBox1Change
+          Items.Strings = (
+            'male'
+            'femelle')
+        end
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = 'Resultat'
+      ImageIndex = 1
+      object DBGrid4: TDBGrid
+        Left = 3
+        Top = 18
+        Width = 711
+        Height = 270
+        DataSource = ResultatMatiereDataSource
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+      end
+      object DBGrid5: TDBGrid
+        Left = 386
+        Top = 300
+        Width = 714
+        Height = 268
+        DataSource = ResultatSemstreDataSource
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+      end
+      object GroupBox7: TGroupBox
+        Left = 720
+        Top = 18
+        Width = 380
+        Height = 270
+        TabOrder = 2
+        object Label38: TLabel
+          Left = 17
+          Top = 72
+          Width = 90
+          Height = 15
+          Caption = 'Note du controle'
+        end
+        object Label39: TLabel
+          Left = 17
+          Top = 128
+          Width = 71
+          Height = 15
+          Caption = 'Note examen'
+        end
+        object Label40: TLabel
+          Left = 17
+          Top = 187
+          Width = 80
+          Height = 15
+          Caption = 'Moyen matiere'
+        end
+        object Label41: TLabel
+          Left = 17
+          Top = 8
+          Width = 40
+          Height = 15
+          Caption = 'Matiere'
+        end
+        object Button8: TButton
+          Left = 262
+          Top = 17
+          Width = 107
+          Height = 25
+          Caption = 'Ajouter'
+          TabOrder = 0
+        end
+        object Button9: TButton
+          Left = 262
+          Top = 110
+          Width = 107
+          Height = 25
+          Caption = 'Modifier'
+          TabOrder = 1
+        end
+        object DBEdit19: TDBEdit
+          Left = 17
+          Top = 93
+          Width = 153
+          Height = 23
+          DataField = 'NOTE1'
+          TabOrder = 2
+        end
+        object DBEdit20: TDBEdit
+          Left = 17
+          Top = 149
+          Width = 153
+          Height = 23
+          DataField = 'NOTE2'
+          TabOrder = 3
+        end
+        object DBEdit21: TDBEdit
+          Left = 17
+          Top = 207
+          Width = 153
+          Height = 23
+          DataField = 'MOY'
+          TabOrder = 4
+        end
+        object formation_matiere: TComboBox
+          Left = 17
+          Top = 29
+          Width = 152
+          Height = 23
+          TabOrder = 5
+          Text = 'formation_matiere'
+          OnChange = formation_matiereChange
+        end
+        object Button10: TButton
+          Left = 262
+          Top = 48
+          Width = 107
+          Height = 25
+          Caption = 'Afficher'
+          TabOrder = 6
+          OnClick = Button3Click
+        end
+        object Button11: TButton
+          Left = 262
+          Top = 79
+          Width = 107
+          Height = 25
+          Caption = 'Afficher tout'
+          TabOrder = 7
+          OnClick = Button3Click
+        end
+      end
+      object GroupBox8: TGroupBox
+        Left = 0
+        Top = 298
+        Width = 380
+        Height = 270
+        TabOrder = 3
+        object Button12: TButton
+          Left = 14
+          Top = 27
+          Width = 131
+          Height = 25
+          Caption = 'Finaliser le semsetre'
+          TabOrder = 0
+        end
+        object Button13: TButton
+          Left = 14
+          Top = 58
+          Width = 131
+          Height = 25
+          Caption = 'Document'
+          TabOrder = 1
+        end
+        object Button14: TButton
+          Left = 14
+          Top = 89
+          Width = 131
+          Height = 25
+          Caption = 'Modifier'
+          TabOrder = 2
+        end
+      end
+      object coef: TDBEdit
+        Left = 900
+        Top = 110
+        Width = 49
+        Height = 23
+        DataField = 'COEFFICENT'
+        DataSource = MatiereDataSource
+        TabOrder = 4
       end
     end
   end
   object EtudiantQueryDataSource: TDataSource
+    AutoEdit = False
     DataSet = EtudiantQuery
-    Left = 16
-    Top = 504
+    OnDataChange = EtudiantQueryDataSourceDataChange
+    Left = 424
+    Top = 65520
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -492,21 +691,68 @@ object Form2: TForm2
       'Password=0000'
       'DriverID=Ora')
     Connected = True
-    Left = 60
-    Top = 514
+    Left = 580
+    Top = 65522
   end
   object EtudiantQuery: TFDQuery
     Active = True
     AggregatesActive = True
     Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate, uvCheckRequired, uvCheckReadOnly, uvCheckUpdatable]
     SQL.Strings = (
       'select * from stagiaire')
-    Left = 160
-    Top = 440
+    Left = 328
+    Top = 65520
   end
   object CustomQuery: TFDQuery
     Connection = FDConnection1
-    Left = 228
-    Top = 522
+    Left = 132
+    Top = 65522
+  end
+  object OpenPictureDialog1: TOpenPictureDialog
+    DefaultExt = '*.jpg'
+    FilterIndex = 0
+    Options = [ofHideReadOnly, ofExtensionDifferent, ofEnableSizing]
+    Left = 212
+    Top = 65522
+  end
+  object ResultatMatiereQuery: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from resultat_matiere')
+    Left = 692
+    Top = 65522
+  end
+  object ResultatMatiereDataSource: TDataSource
+    DataSet = ResultatMatiereQuery
+    Left = 800
+    Top = 65528
+  end
+  object MatiereDataSource: TDataSource
+    DataSet = MatiereQuery
+    Left = 116
+    Top = 178
+  end
+  object MatiereQuery: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from matiere')
+    Left = 188
+    Top = 186
+  end
+  object ResultatSemstreQuery: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from resultats_semestre')
+    Left = 444
+    Top = 458
+  end
+  object ResultatSemstreDataSource: TDataSource
+    DataSet = ResultatSemstreQuery
+    Left = 440
+    Top = 520
   end
 end
